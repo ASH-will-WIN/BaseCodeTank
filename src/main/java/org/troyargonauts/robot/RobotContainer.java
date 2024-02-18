@@ -5,8 +5,10 @@
 
 package org.troyargonauts.robot;
 
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import org.troyargonauts.common.input.Gamepad;
 import org.troyargonauts.common.input.gamepads.AutoGamepad;
+import org.troyargonauts.common.streams.IStream;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -50,6 +52,15 @@ public class RobotContainer {
 //                new InstantCommand(() -> Robot.getDrivetrain().getDualSpeedTransmission().disableAutomaticShifting())
 //                        .andThen(new InstantCommand(() -> getDriver().setRumble(1.0, 0.5)))
 //        );
+
+
+        Robot.getDrivetrain().setDefaultCommand(
+                new RunCommand(() -> {
+                    double speed = driver.getLeftY(); //also multiply by nerf
+                    double turn = driver.getRightX(); //also multiply by nerf
+                    Robot.getDrivetrain().cheesyDrive(speed, turn, 0.8);
+                }, Robot.getDrivetrain())
+        );
     }
 
     public static Gamepad getDriver() {

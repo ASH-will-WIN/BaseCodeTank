@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
+import org.troyargonauts.robot.subsystems.Drivetrain;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -28,6 +29,7 @@ public class Robot extends TimedRobot {
     private final SendableChooser<Command> chooser = new SendableChooser<>();
     private final ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
     private Command autonomousCommand;
+    private static Drivetrain drivetrain;
 
 
     @Override
@@ -73,6 +75,13 @@ public class Robot extends TimedRobot {
     public void testInit() {
         // Cancels all running commands at the start of test mode.
         CommandScheduler.getInstance().cancelAll();
+    }
+
+    public static Drivetrain getDrivetrain(){
+        if (drivetrain == null){
+            drivetrain = new Drivetrain();
+        }
+        return drivetrain;
     }
 
 }
