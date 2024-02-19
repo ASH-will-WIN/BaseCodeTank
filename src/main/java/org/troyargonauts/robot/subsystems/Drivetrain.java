@@ -4,6 +4,7 @@ import com.ctre.phoenix6.controls.StaticBrake;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.revrobotics.CANSparkBase;
+import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -12,10 +13,10 @@ public class Drivetrain extends SubsystemBase {
     private CANSparkMax m_FL_Motor, m_FR_Motor, m_BL_Motor, m_BR_Motor;
     private double rightEncoderValue, leftEncoderValue;
     public Drivetrain(){
-        m_FL_Motor = new CANSparkMax(1, CANSparkMax.MotorType.kBrushless);
-        m_FR_Motor = new CANSparkMax(2, CANSparkMax.MotorType.kBrushless);
-        m_BL_Motor = new CANSparkMax(3, CANSparkMax.MotorType.kBrushless);
-        m_BR_Motor = new CANSparkMax(4, CANSparkMax.MotorType.kBrushless);
+        m_FL_Motor = new CANSparkMax(1, CANSparkMax.MotorType.kBrushed);
+        m_FR_Motor = new CANSparkMax(2, CANSparkMax.MotorType.kBrushed);
+        m_BL_Motor = new CANSparkMax(3, CANSparkMax.MotorType.kBrushed);
+        m_BR_Motor = new CANSparkMax(4, CANSparkMax.MotorType.kBrushed);
 
         m_FL_Motor.setIdleMode(CANSparkBase.IdleMode.kBrake);
         m_FR_Motor.setIdleMode(CANSparkBase.IdleMode.kBrake);
